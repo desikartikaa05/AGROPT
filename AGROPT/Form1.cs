@@ -1,4 +1,8 @@
 using Npgsql;
+using AGROPT.Model;
+using AGROPT.Dashboard.Petani;
+using AGROPT.Dashboard.Customer;
+using AGROPT.Dashboard.Admin;
 
 namespace AGROPT
 {
@@ -18,36 +22,85 @@ namespace AGROPT
         {
             if (textBox1.Text != "" && textBox2.Text != "")
             {
-                if (authLogin(textBox1.Text, textBox2.Text))
+                User user = new User() { Username = textBox1.Text, Password = textBox2.Text };
+                User loggedUser = authLogin(user);
+
+                if (loggedUser != null)
                 {
-                    MessageBox.Show("berhasil", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Login berhasil\nSelamat datang, {loggedUser.Nama}!\nRole: {loggedUser.Role}", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Hide();
+
+                    string role = loggedUser.Role?.Trim().ToLower();
+
+                    if (role == "petani")
+                    {
+                        var dashboard = new Dashboard_Petani(loggedUser, null);
+                        dashboard.ShowDialog();
+                    }
+                    else if (role == "customer")
+                    {
+                        var dashboard = new Dashboard_Customer(loggedUser, null);
+                        dashboard.ShowDialog();
+                    }
+                    else if (role == "admin")
+                    {
+                        var dashboard = new Dashboard_Admin(loggedUser, null); 
+                        dashboard.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Role belum didukung.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("gagal", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Username atau password salah", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                return;
-
             }
-            MessageBox.Show("Login Gagal", "Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            else
+            {
+                MessageBox.Show("Harap isi username dan password!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private bool authLogin(string username, string password)
 
+        private User authLogin(User user)
         {
+            User loggedInUser = null;
+            string connString = "Host=localhost;Username=postgres;Password=koutarou_05;Database=AGROPT;port=5432";
 
-            NpgsqlConnection conn = new NpgsqlConnection("Host=Localhost;Username=postgres;Password=@05Des2005;Database=AGROPT;port = 5432");
-            conn.Open();
-            NpgsqlCommand npgsqlCommand = new NpgsqlCommand();
-            npgsqlCommand.Connection = conn;
-            npgsqlCommand.CommandText = $"Select * from Akun where username = '{username}' AND password = '{password}' ";
-            NpgsqlDataReader data = npgsqlCommand.ExecuteReader();
-            bool result = data.Read();
-            conn.Close();
-            return result;
+            using (NpgsqlConnection conn = new NpgsqlConnection(connString))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Akun WHERE username = @username AND password = @password";
 
+                using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@username", user.Username);
+                    cmd.Parameters.AddWithValue("@password", user.Password);
+
+                    using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            loggedInUser = new User()
+                            {
+                                Username = reader["username"].ToString(),
+                                Password = reader["password"].ToString(),
+                                Nama = reader["nama"].ToString(),
+                                Role = reader["role"].ToString().Trim().ToLower(),
+                                Id = Convert.ToInt32(reader["id"])
+                            };
+                        }
+                    }
+                }
+            }
+            return loggedInUser;
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {

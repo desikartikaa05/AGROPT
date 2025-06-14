@@ -40,10 +40,11 @@
             // 
             // button1
             // 
-            button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            button1.Location = new Point(248, 313);
+            button1.Font = new Font("Times New Roman", 24F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.OliveDrab;
+            button1.Location = new Point(383, 687);
             button1.Name = "button1";
-            button1.Size = new Size(334, 46);
+            button1.Size = new Size(447, 82);
             button1.TabIndex = 0;
             button1.Text = "Login";
             button1.UseVisualStyleBackColor = true;
@@ -51,17 +52,20 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(248, 243);
+            textBox1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(314, 399);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(282, 27);
+            textBox1.Size = new Size(578, 51);
             textBox1.TabIndex = 1;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(248, 181);
+            textBox2.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(314, 514);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(334, 27);
+            textBox2.PasswordChar = '*';
+            textBox2.Size = new Size(461, 57);
             textBox2.TabIndex = 2;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
@@ -69,11 +73,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Times New Roman", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.ActiveCaptionText;
-            label1.Location = new Point(369, 72);
+            label1.Font = new Font("Times New Roman", 48F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.OliveDrab;
+            label1.Location = new Point(518, 214);
             label1.Name = "label1";
-            label1.Size = new Size(117, 46);
+            label1.Size = new Size(233, 89);
             label1.TabIndex = 3;
             label1.Text = "Login";
             label1.Click += label1_Click;
@@ -82,11 +86,11 @@
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(248, 156);
+            label2.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.OliveDrab;
+            label2.Location = new Point(314, 360);
             label2.Name = "label2";
-            label2.Size = new Size(95, 23);
+            label2.Size = new Size(161, 39);
             label2.TabIndex = 4;
             label2.Text = "Username";
             label2.Click += label2_Click;
@@ -95,20 +99,21 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(248, 218);
+            label3.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.OliveDrab;
+            label3.Location = new Point(314, 477);
             label3.Name = "label3";
-            label3.Size = new Size(90, 23);
+            label3.Size = new Size(151, 39);
             label3.TabIndex = 5;
             label3.Text = "Password";
             // 
             // button2
             // 
-            button2.Font = new Font("Times New Roman", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            button2.Location = new Point(528, 241);
+            button2.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.OliveDrab;
+            button2.Location = new Point(781, 514);
             button2.Name = "button2";
-            button2.Size = new Size(56, 29);
+            button2.Size = new Size(111, 57);
             button2.TabIndex = 6;
             button2.Text = "view";
             button2.UseVisualStyleBackColor = true;
@@ -118,11 +123,11 @@
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.BackColor = Color.Transparent;
-            linkLabel1.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            linkLabel1.LinkColor = SystemColors.GradientActiveCaption;
-            linkLabel1.Location = new Point(506, 290);
+            linkLabel1.Font = new Font("Times New Roman", 22.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            linkLabel1.LinkColor = Color.OliveDrab;
+            linkLabel1.Location = new Point(687, 629);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(79, 23);
+            linkLabel1.Size = new Size(143, 43);
             linkLabel1.TabIndex = 7;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Register";
@@ -132,8 +137,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.download__5_;
-            ClientSize = new Size(800, 450);
+            BackgroundImage = Properties.Resources._1;
+            ClientSize = new Size(1924, 1049);
             Controls.Add(linkLabel1);
             Controls.Add(button2);
             Controls.Add(label3);
